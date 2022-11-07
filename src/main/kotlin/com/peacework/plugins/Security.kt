@@ -10,18 +10,31 @@ import io.ktor.server.routing.*
 
 fun Application.configureSecurity() {
 
-    data class MySession(val count: Int = 0)
     install(Sessions) {
-        cookie<MySession>("MY_SESSION") {
+        cookie<AppPrincipal>("session") {
             cookie.extensions["SameSite"] = "lax"
         }
     }
 
     routing {
-        get("/session/increment") {
-            val session = call.sessions.get<MySession>() ?: MySession()
-            call.sessions.set(session.copy(count = session.count + 1))
-            call.respondText("Counter is ${session.count}. Refresh to increment.")
+        intercept(ApplicationCallPipeline.Plugins) {
+            if (
+                call.sessions.get<AppPrincipal>() == null ||
+                call.sessions.get<AppPrincipal>()?.userId == "Guest" ||
+                call.sessions.get<AppPrincipal>()?.userId != call.request.header("User-Id")
+            ) {
+                call.request.header("X-Api-key")?.let {
+                    if (it.isNotEmpty()) {
+                        call.sessions.set(
+                            AppPrincipal(
+                                key = it,
+                                userId = call.request.header("User-Id") ?: "Guest",
+                                sessionId = generateNonce()
+                            )
+                        )
+                    }
+                }
+            }
         }
     }
 }
