@@ -41,5 +41,6 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     implementation("dev.forst", "ktor-api-key", "1.1.0")
+    implementation("io.ktor:ktor-server-default-headers:$ktor_version")
 
 }

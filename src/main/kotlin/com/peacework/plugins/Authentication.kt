@@ -18,7 +18,7 @@ fun Application.configureAuth() {
         val expectedApiKey = "100000-10001"
         apiKey {
             validate { keyFromHeader ->
-                val userId = request.header("User-Id") ?: "Guest"
+                val userId = request.header("X-User-Id") ?: "Guest"
                 keyFromHeader
                     .takeIf { it == expectedApiKey }
                     ?.let { AppPrincipal(key = it, userId = userId, sessionId = generateNonce()) }

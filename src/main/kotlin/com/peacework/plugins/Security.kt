@@ -28,7 +28,7 @@ fun Application.configureSecurity() {
                         call.sessions.set(
                             AppPrincipal(
                                 key = it,
-                                userId = call.request.header("User-Id") ?: "Guest",
+                                userId = call.request.header("X-User-Id") ?: "Guest",
                                 sessionId = generateNonce()
                             )
                         )
