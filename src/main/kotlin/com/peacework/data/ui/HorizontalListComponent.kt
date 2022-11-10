@@ -1,11 +1,11 @@
 package com.peacework.data.ui
 
 import kotlinx.serialization.Serializable
+import kotlin.collections.List
 
 @Serializable
-data class Component(
+data class HorizontalListComponent(
     val type: String,
-    val data: HashMap<String, String>,
-    val actions: List<Action>? = null
+    val row: List<ListItemComponent>
 )
 

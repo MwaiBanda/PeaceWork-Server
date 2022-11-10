@@ -1,11 +1,9 @@
 package com.peacework.data.ui
 
 import kotlinx.serialization.Serializable
-import kotlin.collections.List
 
 @Serializable
-data class HorizontalList(
+data class VerticalListComponent(
     val type: String,
-    val row: List<ListItem>
+    val items: List<ListItemComponent>
 )
-

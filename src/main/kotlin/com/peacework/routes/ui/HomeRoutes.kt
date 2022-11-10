@@ -12,7 +12,7 @@ fun Route.homeRoutes() {
     route("home") {
         get {
             call.respond(
-                Page(
+                PageComponent(
                     pageTitle = "Home",
                     components = listOf(
                         Component(
@@ -25,21 +25,21 @@ fun Route.homeRoutes() {
                             type = "VerticalList",
                             data = hashMapOf(
                                 "column" to Json.encodeToString(
-                                    VerticalList.serializer(),
-                                    VerticalList(
+                                    VerticalListComponent.serializer(),
+                                    VerticalListComponent(
                                         type = "VerticalList",
                                         items = listOf(
-                                            ListItem(
+                                            ListItemComponent(
                                                 id = 1,
                                                 name = "Mandalorian",
                                                 imageURL = "https://images.wallpapersden.com/image/download/the-mandalorian-cool_bGdsaW2UmZqaraWkpJRobWllrWdma2U.jpg"
                                             ),
-                                            ListItem(
+                                            ListItemComponent(
                                                 id = 2,
                                                 name = "Panther",
                                                 imageURL = "https://wallpapers.com/images/hd/cool-picture-black-panther-f71mqdcoz9g5ouc4-f71mqdcoz9g5ouc4.jpg"
                                             ),
-                                            ListItem(
+                                            ListItemComponent(
                                                 id = 3,
                                                 name = "NewEvolution",
                                                 imageURL = "https://newevolutiondesigns.com/images/freebies/cool-4k-ipad-wallpaper-7.jpg"
@@ -47,6 +47,9 @@ fun Route.homeRoutes() {
                                         )
                                     )
                                 )
+                            ),
+                            actions = listOf(
+                                Action(key = "Navigation", type = "HomeListItemNavigation")
                             )
                         )
                     )

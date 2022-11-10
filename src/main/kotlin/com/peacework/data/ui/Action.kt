@@ -3,7 +3,8 @@ package com.peacework.data.ui
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class VerticalList(
+data class Action(
+    val key: String,
     val type: String,
-    val items: List<ListItem>
+    val signals: List<Signal>? = null
 )
