@@ -1,4 +1,4 @@
-package com.peacework.data.ui
+package com.peacework.domain.ui
 
 @kotlinx.serialization.Serializable
 data class Signal(

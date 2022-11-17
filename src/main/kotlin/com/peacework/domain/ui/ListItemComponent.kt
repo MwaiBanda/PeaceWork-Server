@@ -1,4 +1,4 @@
-package com.peacework.data.ui
+package com.peacework.domain.ui
 
 import kotlinx.serialization.Serializable
 
