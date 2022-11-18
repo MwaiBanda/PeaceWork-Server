@@ -4,6 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PageComponent(
-    val pageTitle: String,
-    val components: List<Component>
+    val title: String,
+    val components: List<Component>,
+    val metadata: PageMetadata? = null
 )
+

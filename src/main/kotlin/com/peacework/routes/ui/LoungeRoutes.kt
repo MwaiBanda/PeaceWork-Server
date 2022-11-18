@@ -1,6 +1,9 @@
 package com.peacework.routes.ui
 
 import com.peacework.domain.controller.UserController
+import com.peacework.domain.model.Conversation
+import com.peacework.domain.model.Participant
+import com.peacework.domain.model.Trail
 import com.peacework.domain.ui.*
 import com.peacework.plugins.AppPrincipal
 import com.peacework.util.ComponentType
@@ -38,7 +41,7 @@ fun Route.loungeRoutes(userController: UserController) {
             val user = userController.getUserById(principal?.userId ?: "")
             call.respond(
                 PageComponent(
-                    pageTitle = "Lounge",
+                    title = "Lounge",
                     components = listOf(
                         Component(
                             type = WelcomeBanner.name,
@@ -48,6 +51,32 @@ fun Route.loungeRoutes(userController: UserController) {
                             )
                         ),
                         Component(type = Divider.name),
+                        Component(
+                            type = "ActionRow",
+                            data = hashMapOf(
+                            "text" to "Tap Actions to Expand & Filter Contacts",
+                            "buttons" to Json.encodeToString(
+                                ActionItemHolder.serializer(),
+                                ActionItemHolder(
+                                    listOf(
+                                        ActionComponent(
+                                            id = "0",
+                                            data = hashMapOf(
+                                                "action" to "expand",
+                                                "icon" to "slider.horizontal.below.rectangle"
+                                            )
+                                        ),
+                                        ActionComponent(
+                                            id = "1",
+                                            data = hashMapOf(
+                                                "action" to "filter",
+                                                "icon" to "slider.horizontal.3"
+                                            )
+                                        ),
+                                    )
+                                )
+                            )
+                        )),
                         Component(
                             type = HorizontalList.name,
                             data = hashMapOf(
@@ -59,6 +88,34 @@ fun Route.loungeRoutes(userController: UserController) {
                             )
                         ),
                         Component(type = Divider.name),
+                        Component(type = "SectionRow", data = hashMapOf(
+                            "heading" to "Messages",
+                            "subheading" to "Recents",
+                            "action" to Json.encodeToString(ActionComponent.serializer(), ActionComponent(
+                                id = "0",
+                                data = hashMapOf(
+                                    "action" to "filter",
+                                    "icon" to "slider.horizontal.3"
+                                )
+                            ))
+                        )),
+                        Component(type = Divider.name),
+                        Component(
+                            type = "VerticalList",
+                            data = hashMapOf(
+                                "itemType" to "Message",
+                                "items" to Json.encodeToString(
+                                    ConversationItemHolder.serializer(),
+                                    ConversationItemHolder(items = listOf(
+                                        Conversation(
+                                            participants = listOf(Participant("002", "John Wick")),
+                                            trail = Trail("002", "Where's my dog?", "11/18/2022", false),
+                                            timestamp = System.currentTimeMillis()
+                                        )
+                                    ))
+                                )
+                            )
+                        )
                     )
                 )
             )
