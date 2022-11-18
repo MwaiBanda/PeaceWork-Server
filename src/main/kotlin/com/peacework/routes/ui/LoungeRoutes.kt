@@ -63,14 +63,27 @@ fun Route.loungeRoutes(userController: UserController) {
                                             id = "0",
                                             data = hashMapOf(
                                                 "action" to "expand",
-                                                "icon" to "slider.horizontal.below.rectangle"
-                                            )
+                                                "icon" to Json.encodeToString(
+                                                IconPack.serializer(),
+                                                IconPack(
+                                                    icons = hashMapOf(
+                                                        "iOS" to "slider.horizontal.below.rectangle"
+                                                    )
+                                                )
+                                            ))
                                         ),
                                         ActionComponent(
                                             id = "1",
                                             data = hashMapOf(
                                                 "action" to "filter",
-                                                "icon" to "slider.horizontal.3"
+                                                "icon" to   Json.encodeToString(
+                                                    IconPack.serializer(),
+                                                    IconPack(
+                                                        icons = hashMapOf(
+                                                            "iOS" to "slider.horizontal.3"
+                                                        )
+                                                    )
+                                                )
                                             )
                                         ),
                                     )
@@ -95,7 +108,12 @@ fun Route.loungeRoutes(userController: UserController) {
                                 id = "0",
                                 data = hashMapOf(
                                     "action" to "filter",
-                                    "icon" to "slider.horizontal.3"
+                                    "icon" to Json.encodeToString(
+                                        IconPack.serializer(),
+                                        IconPack(icons = hashMapOf(
+                                            "iOS" to "slider.horizontal.3"
+                                        ))
+                                    )
                                 )
                             ))
                         )),
