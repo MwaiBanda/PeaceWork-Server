@@ -36,7 +36,7 @@ fun Route.authControllerRoutes() {
                                                     "fill" to "Filled",
                                                     "text" to "Login",
                                                     "type" to "Navigation",
-                                                    "destination" to "login",
+                                                    "destination" to "auth-login",
                                                 )
                                             ),
                                             ActionComponent(
@@ -44,8 +44,8 @@ fun Route.authControllerRoutes() {
                                                 data = hashMapOf(
                                                     "fill" to "Outlined",
                                                     "text" to "Signup",
-                                                    "action" to "Navigation",
-                                                    "destination" to "signup"
+                                                    "type" to "Navigation",
+                                                    "destination" to "auth-signup"
                                                 )
                                             )
                                         )
