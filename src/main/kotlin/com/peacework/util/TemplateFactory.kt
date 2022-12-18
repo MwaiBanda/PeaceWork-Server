@@ -7,6 +7,9 @@ import com.peacework.domain.ui.*
 import kotlinx.serialization.json.Json
 
 object TemplateFactory {
+    /**
+     * @page: Lounge Page
+     **/
     suspend fun createLoungePage(user: User, conversationController: ConversationController): PageComponent {
         return PageComponent(
             title = "Lounge",

@@ -25,9 +25,7 @@ fun Route.conversationRoutes(userController: UserController, conversationControl
                 val conversation = call.receive<Conversation>()
 
                 conversationController.postConversation(conversation)
-                call.respond(
-                    TemplateFactory.createLoungePage(user, conversationController)
-                )
+                call.respond(TemplateFactory.createLoungePage(user, conversationController))
             } catch (e: Exception){
                 e.printStackTrace()
             }

@@ -38,9 +38,7 @@ fun Route.loungeRoutes(userController: UserController, conversationController: C
 //                )
 //            )
             val user = userController.getUserById(principal?.userId ?: "")
-            call.respond(
-                TemplateFactory.createLoungePage(user, conversationController)
-            )
+            call.respond(TemplateFactory.createLoungePage(user, conversationController))
         }
     }
 }
